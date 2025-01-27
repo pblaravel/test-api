@@ -1,0 +1,669 @@
+basePath: /api/v1
+definitions:
+  models.CreateOrder:
+    properties:
+      email:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/models.ItemCount'
+        type: array
+    type: object
+  models.ItemCount:
+    properties:
+      count:
+        type: integer
+      productId:
+        type: integer
+    type: object
+  models.Product:
+    properties:
+      category:
+        type: string
+      color:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+      photos:
+        type: string
+      price:
+        type: number
+      shopID:
+        type: string
+    type: object
+  models.Shop:
+    properties:
+      category:
+        type: string
+      description:
+        type: string
+      location:
+        type: string
+      logo:
+        type: string
+      name:
+        type: string
+      rules:
+        type: string
+      status:
+        type: integer
+      subCategory:
+        type: string
+    type: object
+  models.User:
+    properties:
+      name:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8002
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new user with the given username and password
+      parameters:
+      - description: User registration object
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - user
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new user with the given username and password
+      parameters:
+      - description: User registration object
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - user
+  /order/create:
+    post:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateOrder'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - orders
+  /order/email/{email}:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: email
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - orders
+  /order/list:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - orders
+  /order/show/{id}:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - orders
+  /shop/{shop_id}/products/by-category/{category}:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: shop_id
+        required: true
+        type: integer
+      - description: User registration object
+        in: path
+        name: category
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/{shop_id}/products/list:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: shop_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/by-category/{category}:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: category
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/by-name/{name}:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/by-status/{status}:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: status
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/create:
+    post:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.Shop'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/list:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/products/by-category/{category}:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: category
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/products/create:
+    post:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/products/list:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/products/show/{id}:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - products
+  /shop/show/{id}:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+  /shop/update/{id}:
+    post:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: User registration object
+        in: body
+        name: shop
+        schema:
+          $ref: '#/definitions/models.Shop'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - shops
+securityDefinitions:
+  JwtAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
