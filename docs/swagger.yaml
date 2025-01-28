@@ -1,5 +1,10 @@
 basePath: /api/v1
 definitions:
+  models.Category:
+    properties:
+      name:
+        type: string
+    type: object
   models.CreateOrder:
     properties:
       email:
@@ -50,6 +55,15 @@ definitions:
       status:
         type: integer
       subCategory:
+        type: string
+      wallet:
+        type: string
+    type: object
+  models.SubCategory:
+    properties:
+      categoryID:
+        type: integer
+      name:
         type: string
     type: object
   models.User:
@@ -139,6 +153,63 @@ paths:
       summary: Register a new user
       tags:
       - user
+  /category/create:
+    post:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/models.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - category
+  /category/list:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - category
   /order/create:
     post:
       consumes:
@@ -661,6 +732,63 @@ paths:
       summary: Register a new user
       tags:
       - shops
+  /subCategory/create:
+    post:
+      consumes:
+      - application/json
+      description: shoping
+      parameters:
+      - description: User registration object
+        in: body
+        name: subCategory
+        required: true
+        schema:
+          $ref: '#/definitions/models.SubCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - subCategory
+  /subCategory/list:
+    get:
+      consumes:
+      - application/json
+      description: shoping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - subCategory
 securityDefinitions:
   JwtAuth:
     in: header

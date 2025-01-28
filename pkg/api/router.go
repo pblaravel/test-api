@@ -68,6 +68,16 @@ func NewRouter(db *gorm.DB) *gin.Engine {
 			order.GET("/show/:id", OrderId)
 			order.GET("/email/:email", OrderEmail)
 		}
+		category := v1.Group("category")
+		{
+			category.GET("/list", CategoryList)
+			category.POST("/create", CategoryCreate)
+		}
+		subCategory := v1.Group("subCategory")
+		{
+			subCategory.POST("/create", SubcategoryCreate)
+			subCategory.GET("/list", SubCategoryList)
+		}
 
 		shop := v1.Group("/shop")
 		{

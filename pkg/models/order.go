@@ -28,3 +28,9 @@ type CreateOrder struct {
 	Email string
 	Items []ItemCount
 }
+type CategoryList struct {
+	ID          int
+	Name        string
+	Location    string
+	Description string
+}

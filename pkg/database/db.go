@@ -48,6 +48,15 @@ func NewDatabase() *gorm.DB {
 		if err != nil {
 			log.Printf("product is not migrate:%s", err)
 		}
+		err = database.AutoMigrate(&models.Category{})
+		if err != nil {
+			log.Printf("product is not migrate:%s", err)
+		}
+		err = database.AutoMigrate(&models.SubCategory{})
+		if err != nil {
+			log.Printf("product is not migrate:%s", err)
+		}
+
 	}
 
 	// person1 := models.Person{

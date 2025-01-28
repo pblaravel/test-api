@@ -200,3 +200,105 @@ func ShopCreate(c *gin.Context) {
 	c.JSON(200, gin.H{"shops": shop})
 
 }
+
+// ShopList avtorizuet polizavatilea v sisteme
+// ShopList godoc
+// @Summary Register a new user
+// @Schemes http
+// @Description shoping
+// @Tags category
+// @Security ApiKeyAuth
+// @Accept  json
+// @Produce  json
+// @Param   category     body    models.Category     true        "User registration object"
+// @Success 200 {string} string "Successfully registered"
+// @Failure 400 {string} string "Bad Request"
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /category/create [post]
+func CategoryCreate(c *gin.Context) {
+	db, _ := c.MustGet("db").(*gorm.DB)
+	var category models.Category
+	var categoryDB models.Category
+	if err := c.ShouldBindJSON(&category); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	db.Where(models.Category{Name: category.Name}).First(&categoryDB)
+	if categoryDB.ID != 0 {
+		c.JSON(404, gin.H{"error": "category is exist"})
+		return
+	}
+	db.Create(&category)
+	c.JSON(200, gin.H{"shops": category})
+
+}
+
+// ShopList avtorizuet polizavatilea v sisteme
+// ShopList godoc
+// @Summary Register a new user
+// @Schemes http
+// @Description shoping
+// @Tags category
+// @Security ApiKeyAuth
+// @Accept  json
+// @Produce  json
+// @Success 200 {string} string "Successfully registered"
+// @Failure 400 {string} string "Bad Request"
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /category/list [get]
+func CategoryList(c *gin.Context) {
+	db, _ := c.MustGet("db").(*gorm.DB)
+	var categores []models.Category
+
+	db.Find(&categores)
+	c.JSON(200, gin.H{"shops": categores})
+
+}
+
+// ShopList avtorizuet polizavatilea v sisteme
+// ShopList godoc
+// @Summary Register a new user
+// @Schemes http
+// @Description shoping
+// @Tags subCategory
+// @Security ApiKeyAuth
+// @Accept  json
+// @Produce  json
+// @Param   subCategory     body    models.SubCategory     true        "User registration object"
+// @Success 200 {string} string "Successfully registered"
+// @Failure 400 {string} string "Bad Request"
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /subCategory/create [post]
+func SubcategoryCreate(c *gin.Context) {
+	db, _ := c.MustGet("db").(*gorm.DB)
+	var subCategory models.SubCategory
+	if err := c.ShouldBindJSON(&subCategory); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	db.Create(&subCategory)
+	c.JSON(200, gin.H{"shop": subCategory})
+}
+
+// ShopList avtorizuet polizavatilea v sisteme
+// ShopList godoc
+// @Summary Register a new user
+// @Schemes http
+// @Description shoping
+// @Tags subCategory
+// @Security ApiKeyAuth
+// @Accept  json
+// @Produce  json
+// @Success 200 {string} string "Successfully registered"
+// @Failure 400 {string} string "Bad Request"
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /subCategory/list [get]
+func SubCategoryList(c *gin.Context) {
+	db, _ := c.MustGet("db").(*gorm.DB)
+	var subCategores []models.SubCategory
+
+	db.Find(&subCategores)
+	c.JSON(200, gin.H{"shops": subCategores})
+
+}
