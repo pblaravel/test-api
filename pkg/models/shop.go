@@ -3,6 +3,7 @@ package models
 type Shop struct {
 	UUID        string `json:"-" gorm:"unique"`
 	Wallet      string
+	Owner       string
 	Name        string
 	Logo        string
 	Location    string

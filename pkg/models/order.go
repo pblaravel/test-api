@@ -14,6 +14,7 @@ type Order struct {
 type OrderItem struct {
 	ID        int
 	OrderId   int
+	SumTotal  int
 	Count     int
 	ShopId    string
 	Shop      Shop `gorm:"foreignKey:shop_id;references:uuid"`
@@ -27,10 +28,4 @@ type ItemCount struct {
 type CreateOrder struct {
 	Email string
 	Items []ItemCount
-}
-type CategoryList struct {
-	ID          int
-	Name        string
-	Location    string
-	Description string
 }

@@ -58,7 +58,6 @@ func NewDatabase() *gorm.DB {
 		}
 
 	}
-
 	// person1 := models.Person{
 	// 	Name:  "Igor",
 	// 	Age:   30,
